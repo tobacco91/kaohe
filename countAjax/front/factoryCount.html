@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>count</title>
+		<meta charset="utf-8">
+	</head>
+	<body>
+		<form action="##">
+			<input type="text" id="num1">
+			<select id="select">
+				<option value="+">+</option>			
+				<option value="-">-</option>
+				<option value="*">*</option>
+				<option value="/">/</option>
+			</select>
+			<input type="text" id="num2">
+			=<span id="show"></span>
+			<input type="submit" id="sub">
+		</form>
+		<script type="text/javascript">
+			var sub = document.getElementById('sub');
+			sub.addEventListener('click', function(){
+				var num1 = document.getElementById('num1').value;
+				var num2 = document.getElementById('num2').value;
+				var select = document.getElementById('select').value;
+				var _url = 'num1='+num1+'&num2='+num2+'&select='+select;
+
+				var XmlHttp;
+				if(window.XMLHttpRequest){
+		    	XmlHttp = new XMLHttpRequest;
+				}else{
+					XmlHttp = new activeXObject("Microsoft.XMLHTTP");
+				}
+				XmlHttp.open('GET','../back/test.php?'+_url);
+				XmlHttp.send();
+				XmlHttp.addEventListener('readystatechange', function(){
+					if(XmlHttp.readyState == 4 && XmlHttp.status == 200){
+						show.innerHTML = XmlHttp.responseText;
+						//console.log(XmlHttp.responseText);
+					}
+				})
+			})
+		</script>
+	</body>
+</html>
