@@ -25,6 +25,7 @@
             //var_dump($match[0]);
             $tree = array_merge($tree,$match);     
         }
+        var_dump($tree);
         //$sql = 'insert into stu_choice(stu_id,course_week,course_)'
        $tree = array_slice($tree, 9);
 
